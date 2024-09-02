@@ -10,6 +10,8 @@ export const getBooks = async () => {
 };
 
 export const getSearchBook = async (query) => {
+  console.log(query);
+
   const { data } = await booksApi.get("/search", {
     params: {
       query,
@@ -23,8 +25,8 @@ export const addBook = async (book) => {
   return data;
 };
 
-export const updateBook = async (id, book) => {
-  const { data } = await booksApi.put(`/${id}`, book);
+export const updateBook = async (book) => {
+  const { data } = await booksApi.put(`/${book.id}`, book.book);
 
   return data;
 };

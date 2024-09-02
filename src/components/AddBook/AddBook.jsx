@@ -1,14 +1,25 @@
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { addBook } from "../../services/services";
 
-const AddBook = () => {
+const AddBook = ({ setBooks }) => {
   const { handleSubmit, register, reset } = useForm();
-  const [book, setBook] = useState({});
+
+  const addBookLibrary = async (b) => {
+    try {
+      const data = await addBook(b);
+
+      setBooks((prev) => [...prev, data]);
+      return data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   const onSubmit = (data) => {
-    setBook(data);
+    addBookLibrary(data);
+
     reset();
   };
-  useEffect(() => {}, []);
+
   return (
     <div className="w-1/3 border-r-2 pr-2 ">
       <form
@@ -46,6 +57,7 @@ const AddBook = () => {
             type="text"
             placeholder="978-3-16-148410-0"
             className="input input-bordered w-full max-w-xs"
+            pattern="^(97(8|9))?\d{9}(\d|X)$"
             {...register("isbn")}
           />
         </label>
