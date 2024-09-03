@@ -10,8 +10,6 @@ export const getBooks = async () => {
 };
 
 export const getSearchBook = async (query) => {
-  console.log(query);
-
   const { data } = await booksApi.get("/search", {
     params: {
       query,

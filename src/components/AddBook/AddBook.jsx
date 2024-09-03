@@ -57,7 +57,6 @@ const AddBook = ({ setBooks }) => {
             type="text"
             placeholder="978-3-16-148410-0"
             className="input input-bordered w-full max-w-xs"
-            pattern="^(97(8|9))?\d{9}(\d|X)$"
             {...register("isbn")}
           />
         </label>
